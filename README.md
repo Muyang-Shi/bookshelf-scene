@@ -43,6 +43,22 @@ On **macOS**, the live `--view` mode needs `mjpython` instead of `python` (it sh
 `mujoco` package: `.venv/bin/mjpython tests/grasp_test.py table --view`). `view.py` works with plain
 `python` everywhere.
 
+## Shortcuts
+
+If you have [`just`](https://github.com/casey/just) installed (`brew install just`, or see its
+README for other platforms), run `just` in this folder to list the shortcuts:
+
+| Command | Does |
+|---|---|
+| `just setup` | Create `.venv` and install requirements (first time only) |
+| `just view` / `just ready` | Open the viewer in the `home` / `ready` pose |
+| `just watch book` | Watch a scripted grasp live (`table` = cup, `book`) |
+| `just grasp` | Run both grasp tests headless and write GIFs |
+| `just rebuild path/to/capture.zip` | Measure a new capture and rebuild the scene |
+| `just build` | Rebuild the scene from the current inputs |
+
+They use `.venv` if it exists, and `mjpython` on macOS where the live viewer needs it.
+
 ## Rebuild from a new capture
 
 1. Scan the scene with a phone LiDAR app that exports a zip containing `textured_output.obj` and
@@ -75,6 +91,7 @@ Only if the LEAP hand URDF changes: `python tools/convert_leap.py`, then `python
 |---|---|
 | `scene.xml` | The MuJoCo scene (generated). Keyframes: `home`, `ready`. |
 | `view.py` | Opens the viewer in a keyframe. |
+| `justfile` | Shortcuts (`just view`, `just watch book`, ...). |
 | `build_scene.py` | Builds everything. Tunable constants are at the top. |
 | `scan_measurements.json` | Measured dimensions from the capture (overrides defaults in `build_scene.py`). |
 | `tools/measure_scan.py` | Measures table, shelf and UR5 mount from a capture zip or mesh. |
