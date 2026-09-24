@@ -15,3 +15,6 @@ data/
 # Renders regenerated on every run
 preview.png
 *.gif
+
+# ...except the images the README shows
+!docs/images/*.gif

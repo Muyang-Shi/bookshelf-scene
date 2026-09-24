@@ -7,6 +7,26 @@ real-world sizes and positions come from a phone LiDAR capture of the scene.
 The package is self-contained: every input it needs is in `inputs/`, and the generated scene is
 already built, so you can open it straight away.
 
+![Real setup and simulation from a matching viewpoint](docs/images/real_vs_sim.jpg)
+
+*The real setup (left) and the simulated scene (right) from a similar viewpoint. The arm is posed
+upright to match the photo.*
+
+![Book row, real and simulated](docs/images/books_real_vs_sim.jpg)
+
+*The book row. Books from the same SAM3D mesh stand together and share a height: four tall, four
+medium (VOGUE series), two short dark ones, two tall on the right. SAM3D doesn't reproduce the
+printed spine titles.*
+
+| Cup pick | Book pick (by the spine) |
+|---|---|
+| ![Scripted cup grasp](docs/images/grasp_cup.gif) | ![Scripted book grasp](docs/images/grasp_book.gif) |
+| `python tests/grasp_test.py table`: lifts 14 cm, PASS | `python tests/grasp_test.py book`: lifts 12 cm, slips ~5 cm, PARTIAL |
+
+![Scene overview, two views](docs/images/scene_overview.jpg)
+
+*The scene in its `home` keyframe.*
+
 ## Run it
 
 ```bash
@@ -43,6 +63,10 @@ On **macOS**, the live `--view` mode needs `mjpython` instead of `python` (it sh
    python tools/measure_scan.py path/to/capture.zip --write
    ```
    This writes `scan_measurements.json` (table, shelf and robot-mount dimensions in metres).
+
+   ![Capture seen from above, with the fitted table, shelf and robot mount](docs/images/capture_topdown.jpg)
+
+   *What the script fits in the capture: table (red), shelf (yellow), UR5 mount (blue).*
 3. Rebuild:
    ```bash
    python build_scene.py
@@ -65,7 +89,8 @@ Only if the LEAP hand URDF changes: `python tools/convert_leap.py`, then `python
 | `scan_measurements.json` | Measured dimensions from the capture (overrides defaults in `build_scene.py`). |
 | `tools/measure_scan.py` | Measures table, shelf and UR5 mount from a capture zip or mesh. |
 | `tools/convert_leap.py` | Converts the LEAP URDF to MJCF with actuators. |
-| `tests/grasp_test.py` | Scripted grasp test. |
+| `tests/grasp_test.py` | Scripted cup and book grasp tests. |
+| `docs/images/` | Images and animations shown in this README. |
 | `assets/` | Generated meshes, textures and robot models used by `scene.xml`. |
 | `inputs/sam3d_glb/` | SAM3D meshes (unit-scaled, Y-up). |
 | `inputs/robots/` | UR5 source model and LEAP hand URDF. |
