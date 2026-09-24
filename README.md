@@ -12,20 +12,10 @@ already built, so you can open it straight away.
 *The real setup (left) and the simulated scene (right) from a similar viewpoint. The arm is posed
 upright to match the photo.*
 
-![Book row, real and simulated](docs/images/books_real_vs_sim.jpg)
-
-*The book row. Books from the same SAM3D mesh stand together and share a height: four tall, four
-medium (VOGUE series), two short dark ones, two tall on the right. SAM3D doesn't reproduce the
-printed spine titles.*
-
 | Cup pick | Book pick (by the spine) |
 |---|---|
 | ![Scripted cup grasp](docs/images/grasp_cup.gif) | ![Scripted book grasp](docs/images/grasp_book.gif) |
 | `python tests/grasp_test.py table`: lifts 14 cm, PASS | `python tests/grasp_test.py book`: lifts 12 cm, slips ~5 cm, PARTIAL |
-
-![Scene overview, two views](docs/images/scene_overview.jpg)
-
-*The scene in its `home` keyframe.*
 
 ## Run it
 
