@@ -1,0 +1,6 @@
+# Tested with Python 3.13 on macOS; MuJoCo >= 3.2 is needed for <attach>, 3.14 is what this was built with.
+mujoco==3.14.0
+numpy>=1.26
+trimesh>=4.4
+scipy>=1.11
+pillow>=10.0

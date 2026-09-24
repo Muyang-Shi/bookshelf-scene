@@ -1,0 +1,17 @@
+# Python / environment
+.venv/
+__pycache__/
+*.pyc
+
+# OS / tool noise
+.DS_Store
+__MACOSX/
+MUJOCO_LOG.TXT
+
+# Raw capture bundles (large; measure them with tools/measure_scan.py, commit scan_measurements.json)
+data/
+*.zip
+
+# Renders regenerated on every run
+preview.png
+*.gif

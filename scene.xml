@@ -1,0 +1,175 @@
+<mujoco model="sam3d_shelf_scene_ur5">
+  <compiler angle="radian" meshdir="./" texturedir="./"/>
+  <option timestep="0.002" integrator="implicitfast"/>
+  <size nkey="2"/>
+  <visual>
+    <global azimuth="60" elevation="-25" offwidth="1920" offheight="1080"/>
+    <headlight ambient="0.4 0.4 0.4" diffuse="0.6 0.6 0.6" specular="0 0 0"/>
+  </visual>
+  <statistic extent="1.6" center="-0.2 0.1 0.9"/>
+  <default>
+    <default class="visual">
+      <geom type="mesh" contype="0" conaffinity="0" group="2"/>
+    </default>
+    <default class="obj_col">
+      <geom type="mesh" group="3" friction="0.8 0.01 0.001" solref="0.004 1" rgba="0.8 0.3 0.3 0.5"/>
+    </default>
+    <default class="static_col">
+      <geom group="3" friction="0.8 0.01 0.001"/>
+    </default>
+  </default>
+  <asset>
+    <texture name="grid" type="2d" builtin="checker" rgb1="0.35 0.37 0.38" rgb2="0.3 0.32 0.33" width="512" height="512"/>
+    <material name="grid" texture="grid" texrepeat="8 8" reflectance="0.05"/>
+    <texture name="table_tex" type="2d" file="assets/table/table.png"/>
+    <material name="table_mat" texture="table_tex" specular="0.2" shininess="0.1"/>
+    <mesh name="table" file="assets/table/table.obj"/>
+    <texture name="shelf_tex" type="2d" file="assets/shelf/shelf.png"/>
+    <material name="shelf_mat" texture="shelf_tex" specular="0.2" shininess="0.1"/>
+    <mesh name="shelf" file="assets/shelf/shelf.obj"/>
+    <texture name="cup_tex" type="2d" file="assets/cup/cup.png"/>
+    <material name="cup_mat" texture="cup_tex" specular="0.2" shininess="0.1"/>
+    <mesh name="cup" file="assets/cup/cup.obj"/>
+    <texture name="book0_tex" type="2d" file="assets/book0/book0.png"/>
+    <material name="book0_mat" texture="book0_tex" specular="0.2" shininess="0.1"/>
+    <mesh name="book0" file="assets/book0/book0.obj"/>
+    <texture name="book1_tex" type="2d" file="assets/book1/book1.png"/>
+    <material name="book1_mat" texture="book1_tex" specular="0.2" shininess="0.1"/>
+    <mesh name="book1" file="assets/book1/book1.obj"/>
+    <texture name="book2_tex" type="2d" file="assets/book2/book2.png"/>
+    <material name="book2_mat" texture="book2_tex" specular="0.2" shininess="0.1"/>
+    <mesh name="book2" file="assets/book2/book2.obj"/>
+    <texture name="book3_tex" type="2d" file="assets/book3/book3.png"/>
+    <material name="book3_mat" texture="book3_tex" specular="0.2" shininess="0.1"/>
+    <mesh name="book3" file="assets/book3/book3.obj"/>
+    <model name="ur5" file="assets/ur5/ur5_leap.xml"/>
+  </asset>
+  <worldbody>
+    <light pos="0 -1 3" dir="0 0.3 -1" directional="true"/>
+    <geom name="floor" type="plane" size="0 0 0.05" material="grid"/>
+    <body name="ur5_pedestal" pos="-0.5787 -0.0052 0">
+      <geom name="pedestal_foot" type="cylinder" size="0.18 0.015" pos="0 0 0.015" rgba="0.1 0.1 0.1 1"/>
+      <geom name="pedestal_column" type="cylinder" size="0.07 0.2753" pos="0 0 0.2753" rgba="0.15 0.15 0.15 1"/>
+      <frame pos="0 0 0.5507">
+        <attach model="ur5" body="base_link" prefix="ur5_"/>
+      </frame>
+    </body>
+    <body name="table" pos="0 0 0">
+      <geom class="visual" mesh="table" material="table_mat"/>
+      <geom name="table_top" class="static_col" type="box" pos="0.0000 0.0000 0.7350" size="0.3874 0.4949 0.0150" rgba="0.6 0.4 0.2 1"/>
+      <geom name="table_leg0" class="static_col" type="box" pos="0.3254 0.4207 0.3600" size="0.0250 0.0250 0.3600" rgba="0.6 0.4 0.2 1"/>
+      <geom name="table_leg1" class="static_col" type="box" pos="0.3254 -0.4207 0.3600" size="0.0250 0.0250 0.3600" rgba="0.6 0.4 0.2 1"/>
+      <geom name="table_leg2" class="static_col" type="box" pos="-0.3254 0.4207 0.3600" size="0.0250 0.0250 0.3600" rgba="0.6 0.4 0.2 1"/>
+      <geom name="table_leg3" class="static_col" type="box" pos="-0.3254 -0.4207 0.3600" size="0.0250 0.0250 0.3600" rgba="0.6 0.4 0.2 1"/>
+    </body>
+    <body name="shelf" pos="0.0239 0.3817 0.7500">
+      <geom class="visual" mesh="shelf" material="shelf_mat"/>
+      <geom name="shelf_left" class="static_col" type="box" pos="-0.3182 0.0000 0.3391" size="0.0090 0.1114 0.3391" rgba="0.6 0.4 0.2 1"/>
+      <geom name="shelf_right" class="static_col" type="box" pos="0.3182 0.0000 0.3391" size="0.0090 0.1114 0.3391" rgba="0.6 0.4 0.2 1"/>
+      <geom name="shelf_bottom" class="static_col" type="box" pos="0.0000 0.0000 0.0068" size="0.3272 0.1114 0.0090" rgba="0.6 0.4 0.2 1"/>
+      <geom name="shelf_middle" class="static_col" type="box" pos="0.0000 0.0000 0.3052" size="0.3272 0.1114 0.0090" rgba="0.6 0.4 0.2 1"/>
+      <geom name="shelf_upper" class="static_col" type="box" pos="0.0000 0.0000 0.5833" size="0.3272 0.1114 0.0090" rgba="0.6 0.4 0.2 1"/>
+      <geom name="shelf_back_low" class="static_col" type="box" pos="0.0000 0.1064 0.0780" size="0.3272 0.0050 0.0780" rgba="0.6 0.4 0.2 1"/>
+      <geom name="shelf_back_high" class="static_col" type="box" pos="0.0000 0.1064 0.4849" size="0.3272 0.0050 0.1933" rgba="0.6 0.4 0.2 1"/>
+    </body>
+    <body name="cup0" pos="-0.2338 0.3717 0.7656">
+      <freejoint/>
+      <geom class="visual" mesh="cup" material="cup_mat"/>
+      <geom class="obj_col" mesh="cup" mass="0.05"/>
+    </body>
+    <body name="cup1" pos="-0.1307 0.3717 0.7656">
+      <freejoint/>
+      <geom class="visual" mesh="cup" material="cup_mat"/>
+      <geom class="obj_col" mesh="cup" mass="0.05"/>
+    </body>
+    <body name="cup2" pos="-0.0276 0.3717 0.7656">
+      <freejoint/>
+      <geom class="visual" mesh="cup" material="cup_mat"/>
+      <geom class="obj_col" mesh="cup" mass="0.05"/>
+    </body>
+    <body name="cup3" pos="0.0754 0.3717 0.7656">
+      <freejoint/>
+      <geom class="visual" mesh="cup" material="cup_mat"/>
+      <geom class="obj_col" mesh="cup" mass="0.05"/>
+    </body>
+    <body name="cup4" pos="0.1785 0.3717 0.7656">
+      <freejoint/>
+      <geom class="visual" mesh="cup" material="cup_mat"/>
+      <geom class="obj_col" mesh="cup" mass="0.05"/>
+    </body>
+    <body name="cup5" pos="0.2816 0.3717 0.7656">
+      <freejoint/>
+      <geom class="visual" mesh="cup" material="cup_mat"/>
+      <geom class="obj_col" mesh="cup" mass="0.05"/>
+    </body>
+    <body name="book00_book3" pos="-0.2566 0.3817 1.0640">
+      <freejoint/>
+      <geom class="visual" mesh="book3" material="book3_mat"/>
+      <geom class="obj_col" mesh="book3" mass="0.3"/>
+    </body>
+    <body name="book01_book3" pos="-0.2013 0.3817 1.0640">
+      <freejoint/>
+      <geom class="visual" mesh="book3" material="book3_mat"/>
+      <geom class="obj_col" mesh="book3" mass="0.3"/>
+    </body>
+    <body name="book02_book3" pos="-0.1460 0.3817 1.0640">
+      <freejoint/>
+      <geom class="visual" mesh="book3" material="book3_mat"/>
+      <geom class="obj_col" mesh="book3" mass="0.3"/>
+    </body>
+    <body name="book03_book3" pos="-0.0907 0.3817 1.0640">
+      <freejoint/>
+      <geom class="visual" mesh="book3" material="book3_mat"/>
+      <geom class="obj_col" mesh="book3" mass="0.3"/>
+    </body>
+    <body name="book04_book1" pos="-0.0400 0.3817 1.0640">
+      <freejoint/>
+      <geom class="visual" mesh="book1" material="book1_mat"/>
+      <geom class="obj_col" mesh="book1" mass="0.3"/>
+    </body>
+    <body name="book05_book1" pos="0.0061 0.3817 1.0640">
+      <freejoint/>
+      <geom class="visual" mesh="book1" material="book1_mat"/>
+      <geom class="obj_col" mesh="book1" mass="0.3"/>
+    </body>
+    <body name="book06_book1" pos="0.0521 0.3817 1.0640">
+      <freejoint/>
+      <geom class="visual" mesh="book1" material="book1_mat"/>
+      <geom class="obj_col" mesh="book1" mass="0.3"/>
+    </body>
+    <body name="book07_book1" pos="0.0982 0.3817 1.0640">
+      <freejoint/>
+      <geom class="visual" mesh="book1" material="book1_mat"/>
+      <geom class="obj_col" mesh="book1" mass="0.3"/>
+    </body>
+    <body name="book08_book0" pos="0.1479 0.3817 1.0640">
+      <freejoint/>
+      <geom class="visual" mesh="book0" material="book0_mat"/>
+      <geom class="obj_col" mesh="book0" mass="0.3"/>
+    </body>
+    <body name="book09_book0" pos="0.2012 0.3817 1.0640">
+      <freejoint/>
+      <geom class="visual" mesh="book0" material="book0_mat"/>
+      <geom class="obj_col" mesh="book0" mass="0.3"/>
+    </body>
+    <body name="book10_book2" pos="0.2539 0.3817 1.0640">
+      <freejoint/>
+      <geom class="visual" mesh="book2" material="book2_mat"/>
+      <geom class="obj_col" mesh="book2" mass="0.3"/>
+    </body>
+    <body name="book11_book2" pos="0.3060 0.3817 1.0640">
+      <freejoint/>
+      <geom class="visual" mesh="book2" material="book2_mat"/>
+      <geom class="obj_col" mesh="book2" mass="0.3"/>
+    </body>
+  </worldbody>
+  <contact>
+    <!-- the arm is welded to the world via the pedestal, so parent-child filtering doesn't apply here -->
+    <exclude body1="ur5_base_link_inertia" body2="ur5_shoulder_link"/>
+    <exclude body1="ur5_pedestal" body2="ur5_shoulder_link"/>
+  </contact>
+  <keyframe>
+    <key name="home" qpos="0 -1.5708 1.5708 -1.5708 -1.5708 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -0.2338 0.3717 0.7656 1 0 0 0 -0.1307 0.3717 0.7656 1 0 0 0 -0.0276 0.3717 0.7656 1 0 0 0 0.0754 0.3717 0.7656 1 0 0 0 0.1785 0.3717 0.7656 1 0 0 0 0.2816 0.3717 0.7656 1 0 0 0 -0.2566 0.3817 1.064 1 0 0 0 -0.2013 0.3817 1.064 1 0 0 0 -0.146 0.3817 1.064 1 0 0 0 -0.0907 0.3817 1.064 1 0 0 0 -0.04 0.3817 1.064 1 0 0 0 0.0061 0.3817 1.064 1 0 0 0 0.0521 0.3817 1.064 1 0 0 0 0.0982 0.3817 1.064 1 0 0 0 0.1479 0.3817 1.064 1 0 0 0 0.2012 0.3817 1.064 1 0 0 0 0.2539 0.3817 1.064 1 0 0 0 0.306 0.3817 1.064 1 0 0 0" ctrl="0 -1.5708 1.5708 -1.5708 -1.5708 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"/>
+    <key name="ready" qpos="-2.95183 -2.06211 -1.10305 0.0235639 2.95183 1.5708 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -0.2338 0.3717 0.7656 1 0 0 0 -0.1307 0.3717 0.7656 1 0 0 0 -0.0276 0.3717 0.7656 1 0 0 0 0.0754 0.3717 0.7656 1 0 0 0 0.1785 0.3717 0.7656 1 0 0 0 0.2816 0.3717 0.7656 1 0 0 0 -0.2566 0.3817 1.064 1 0 0 0 -0.2013 0.3817 1.064 1 0 0 0 -0.146 0.3817 1.064 1 0 0 0 -0.0907 0.3817 1.064 1 0 0 0 -0.04 0.3817 1.064 1 0 0 0 0.0061 0.3817 1.064 1 0 0 0 0.0521 0.3817 1.064 1 0 0 0 0.0982 0.3817 1.064 1 0 0 0 0.1479 0.3817 1.064 1 0 0 0 0.2012 0.3817 1.064 1 0 0 0 0.2539 0.3817 1.064 1 0 0 0 0.306 0.3817 1.064 1 0 0 0" ctrl="-2.95183 -2.06211 -1.10305 0.0235639 2.95183 1.5708 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"/>
+  </keyframe>
+</mujoco>

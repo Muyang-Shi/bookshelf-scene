@@ -1,0 +1,16 @@
+{
+ "mount_x": -0.5787,
+ "mount_y": -0.0052,
+ "mount_z": 0.5507,
+ "shelf_back_gap": 0.0018,
+ "shelf_d": 0.2228,
+ "shelf_h": 0.6782,
+ "shelf_w": 0.6544,
+ "shelf_x": 0.0239,
+ "table_d": 0.9898,
+ "table_h": 0.75,
+ "table_w": 0.7747,
+ "sources": [
+  "scene_with_obj.zip"
+ ]
+}
